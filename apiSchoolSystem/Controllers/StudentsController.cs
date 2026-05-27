@@ -19,12 +19,12 @@ namespace apiSchoolSystem.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateStudent(Student student)
         {
-            var u = await _context.Student.FindAsync(Student.Student);
+            var u = await _context.Students.FindAsync(Student.Id);
             if (u == null)
             {
                 return NotFound("User not found");
             }
-            _context.Student.Update(StudentID);
+            _context.Students.Update(Student);
             try
             {
                 await _context.SaveChangesAsync();
