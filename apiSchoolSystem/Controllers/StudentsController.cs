@@ -1,6 +1,8 @@
-﻿using apiSchoolSystem.Models;
+﻿using apiSchoolSystem.Data;
+using apiSchoolSystem.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace apiSchoolSystem.Controllers
 {
@@ -8,15 +10,34 @@ namespace apiSchoolSystem.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+        private readonly AppDbContext _context;
+       
+        public StudentsController(AppDbContext context)
         {
-            return Ok("Heloo");
+            _context = context;
         }
-        [HttpPost]
-        public IActionResult Add(Student s) {
-            return Ok("Added");
-        
+        [HttpPut]
+        public async Task<IActionResult> UpdateStudent(Student student)
+        {
+            var u = await _context.Student.FindAsync(Student.Student);
+            if (u == null)
+            {
+                return NotFound("User not found");
+            }
+            _context.Student.Update(StudentID);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+            return Ok();
         }
+
+
+
     }
 }
+           
