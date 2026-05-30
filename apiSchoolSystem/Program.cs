@@ -10,10 +10,9 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(connectionString);
-});
+    options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
