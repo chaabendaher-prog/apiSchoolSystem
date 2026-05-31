@@ -39,7 +39,7 @@ namespace apiSchoolSystem.Controllers
         [HttpGet]
         public async Task<ActionResult<Student>> GetStudents()
         {
-            return Ok(_context.Students.ToList);
+            return Ok(_context.Students.ToList());
 
 
         }
