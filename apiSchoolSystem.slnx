@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../school system/school system/school system.csproj" Id="c5307ebe-ab14-4840-841b-253cfe79b91f" />
   <Project Path="apiSchoolSystem/apiSchoolSystem.csproj" />
 </Solution>
